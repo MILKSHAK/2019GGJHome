@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DeathOnTriggerEnter : MonoBehaviour
 {
+    public DeathReason deathReason;
+
+    public GameObject effectPrefab;
+
     GameManager _gameManager; 
 
     void Start()
@@ -14,6 +18,11 @@ public class DeathOnTriggerEnter : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (!_gameManager.isDead) {
             EventBus.Post(EventType.PlayerDestroy);
+            _gameManager.deathReason = deathReason;
+
+            if (effectPrefab) {
+                GameObject.Instantiate(effectPrefab, transform.position, Quaternion.identity);
+            }
         }
     }
 }

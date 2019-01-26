@@ -15,7 +15,12 @@ public class UIDead : MonoBehaviour
 
     void OnEvent(EventType type) {
         if (type == EventType.PlayerDestroy)
-            GetComponent<Animator>().SetTrigger("Die");
+            StartCoroutine(ActionDie());
+    }
+
+    IEnumerator ActionDie() {
+        yield return new WaitForSeconds(1.0f);
+        GetComponent<Animator>().SetTrigger("Die");
     }
 
 }

@@ -41,6 +41,7 @@ public class Sun : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (!_gameManager.isDead) {
             print("Dead!!" + other);
+            _gameManager.deathReason = DeathReason.Burn;
             EventBus.Post(EventType.PlayerDestroy);
         }
     }

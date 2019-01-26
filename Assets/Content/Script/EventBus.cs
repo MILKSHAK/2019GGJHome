@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DeathReason
+{
+	Collision,
+	Burn,
+}
+
 public enum EventType
 {
 	PickupEnergy,

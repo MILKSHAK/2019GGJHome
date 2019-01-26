@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
 	public bool isDead { get; private set; }
 
+	[NonSerialized]
+	public DeathReason deathReason;
+
 	public float initialBoostSpeed; // 引擎加速
 
 	[Header("受太阳吸引速度")]

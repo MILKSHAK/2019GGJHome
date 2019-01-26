@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public GameObject explodePrefab;
+
+	public GameObject energyExplodePrefab;
+
 	[SerializeField]
 	private Vector2 _maxSpeed = new Vector2(3, 3);
 
@@ -39,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
 	private Animator _lazerAnimator;
 
+	private Animator _animator;
+
 	private void Start()
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
@@ -46,6 +52,7 @@ public class PlayerController : MonoBehaviour
 		_lazer = transform.Find("Lazer");
 		_lazer.gameObject.SetActive(false);
 		_lazerAnimator = _lazer.GetComponent<Animator>();
+		_animator = GetComponent<Animator>();
 
 		energyMat = Instantiate(energyMat);
 		transform.Find("_UIBar").GetComponent<SpriteRenderer>().material = energyMat;
@@ -62,12 +69,27 @@ public class PlayerController : MonoBehaviour
 
 	private void OnEvent(EventType ev) {
 		if (ev == EventType.PlayerDestroy) {
-			StartCoroutine(ActionDestroy());
+			transform.Find("_UIBar").gameObject.SetActive(false);
+			transform.Find("_UIBar2").gameObject.SetActive(false);
+			if (_gameManager.deathReason == DeathReason.Burn) {
+				_animator.SetTrigger("DieBurning");
+			} else {
+				StartCoroutine(ActionDestroyCollision());
+			}
 		}
 	}
 
 	IEnumerator ActionDestroy() {
 		yield return null;
+		Instantiate(explodePrefab, transform.position, Quaternion.identity);
+		yield return new WaitForSeconds(0.3f);
+		Destroy(gameObject);
+	}
+
+	IEnumerator ActionDestroyCollision() {
+		yield return null;
+		Instantiate(energyExplodePrefab, transform.position, Quaternion.identity);
+		yield return new WaitForSeconds(0.3f);
 		Destroy(gameObject);
 	}
 
@@ -99,6 +121,15 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		Vector2 nvel;
+		if (_gameManager.isDead) {
+			nvel = _rigidbody.velocity;
+			nvel = Vector2.MoveTowards(nvel, Vector2.zero, Time.deltaTime * 2f);
+			_rigidbody.velocity = nvel;
+
+			return;
+		}
+
 		Vector2 force = Vector2.zero;
 		if (Mathf.Abs(GameInput.MoveAxis.y) > 0.1f)
 		{
@@ -140,7 +171,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		_rigidbody.AddForce(force);
-		var nvel = _rigidbody.velocity;
+		nvel = _rigidbody.velocity;
 		nvel.x = Mathf.Min(_maxSpeed.x, nvel.x);
 		nvel.y = Mathf.Min(_maxSpeed.y, Mathf.Abs(nvel.y)) * Mathf.Sign(nvel.y);
 		_rigidbody.velocity = nvel;
