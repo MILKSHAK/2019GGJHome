@@ -12,6 +12,13 @@ public class Pickup : MonoBehaviour
 {
 	public PickupType _pickupType;
 
+	public float speed = -1;
+
+	private void Update()
+	{
+		transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+	}
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.gameObject.tag == "Player")

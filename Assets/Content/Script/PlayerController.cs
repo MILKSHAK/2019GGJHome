@@ -43,9 +43,9 @@ public class PlayerController : MonoBehaviour
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-		_lazer = Instantiate(_lazerPrefab, transform);
+		_lazer = transform.Find("Lazer");
 		_lazer.gameObject.SetActive(false);
-		_lazerAnimator = _lazer.Find("Lazer").GetComponent<Animator>();
+		_lazerAnimator = _lazer.GetComponent<Animator>();
 
 		energyMat = Instantiate(energyMat);
 		transform.Find("_UIBar").GetComponent<SpriteRenderer>().material = energyMat;

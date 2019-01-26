@@ -8,11 +8,13 @@ public class Obstacle : MonoBehaviour, IDamagable
 {
 	public float health;
 
-	public float dropRange = 1;
+	public float dropRange = 10;
 
 	public float speed = -1;
 
 	public bool canDestroy = false;
+
+	private bool died = false;
 
 	[Serializable]
 	public class ObstacleDrop
@@ -36,7 +38,7 @@ public class Obstacle : MonoBehaviour, IDamagable
 			return;
 		}
 		health -= damage;
-		if (health <= 0)
+		if (health <= 0 && !died)
 		{
 			Die();
 		}
@@ -49,13 +51,16 @@ public class Obstacle : MonoBehaviour, IDamagable
 		{
 			return;
 		}
+		died = true;
 		EventBus.Post<EventType>(EventType.ObstacleDestroy);
 		foreach (ObstacleDrop drop in obstacleDrops)
 		{
 			for (int i = 0; i < drop.number; i++)
 			{
-				Instantiate(drop.dropPrefab, GetRandomPos(), UnityEngine.Random.rotation);
+				Vector3 spwanPos = GetRandomPos();
+				Instantiate(drop.dropPrefab, GetRandomPos(), Quaternion.Euler(0, 0, 0));
 			}
+			Destroy(gameObject);
 		}
 		return;
 	}
