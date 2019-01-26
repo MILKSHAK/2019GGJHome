@@ -19,11 +19,15 @@ public class GameManager : MonoBehaviour
 
 	public float currentEnergy;
 
+	public float pickUpEnergy;
+
 	private float _runningTime;
 
 	private float _distanceToSun;
 
-	private float _boostSpeed;
+	public float boostSpeed;
+
+	public float currentSpeed;
 
 	private void Start()
 	{
@@ -49,20 +53,37 @@ public class GameManager : MonoBehaviour
 		}
 		else if (eventType == EventType.HitObstacle)
 		{
-
+			OnHitObstacle();
 		}
 		else if (eventType == EventType.HitPlayer)
 		{
-
+			OnHitPlayer();
 		}
 		else if (eventType == EventType.PlayerDestroy)
 		{
+			OnPlayerDead();
 			isDead = true;
 		}
 		return;
 	}
 
 	private void OnPickEnergy()
+	{
+		currentEnergy += pickUpEnergy;
+		return;
+	}
+
+	private void OnHitObstacle()
+	{
+		return;
+	}
+
+	private void OnHitPlayer()
+	{
+		return;
+	}
+
+	private void OnPlayerDead()
 	{
 		return;
 	}

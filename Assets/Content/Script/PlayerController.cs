@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
 	private float _deaccelerateRate = -1;
 
 	[SerializeField]
+	private float _accelerateRate = 3;
+
+	[SerializeField]
 	private Transform _lazerPrefab;
 
 	private Rigidbody2D _rigidbody;
@@ -29,8 +32,6 @@ public class PlayerController : MonoBehaviour
 	private Transform _lazer;
 
 	private Animator _lazerAnimator;
-
-
 
 	private void Start()
 	{
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (_rigidbody.velocity.sqrMagnitude <= _maxSpeed)
 			{
-				_rigidbody.AddForce(new Vector2(0, GameInput.MoveAxis.y));
+				_rigidbody.AddForce(new Vector2(0, GameInput.MoveAxis.y * _accelerateRate));
 			}
 		}
 		else
@@ -105,7 +106,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (_rigidbody.velocity.x > _gameManager.initialConstSpeed)
 			{
-				_currentSpeed = _currentSpeed - Time.fixedDeltaTime * _deaccelerateRate;
+				_gameManager.currentSpeed = _gameManager.currentSpeed - Time.fixedDeltaTime * _deaccelerateRate;
 				_rigidbody.AddForce(new Vector2(-_deaccelerateRate, 0));
 			}
 		}
@@ -139,7 +140,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_boosting && _gameManager.currentEnergy > 0 && _rigidbody.velocity.x < _maxSpeed)
 		{
-			_currentSpeed = _currentSpeed + Time.fixedDeltaTime * _gameManager.initialBoostSpeed;
+			_gameManager.currentSpeed = _gameManager.currentSpeed + Time.fixedDeltaTime * _gameManager.boostSpeed;
 			_rigidbody.AddForce(new Vector2(_deaccelerateRate, 0));
 			_gameManager.currentEnergy -= _gameManager.energyCost * Time.fixedDeltaTime;
 		}
