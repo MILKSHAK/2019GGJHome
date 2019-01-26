@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 684957487401971275}
   - component: {fileID: 3795783891632261104}
   m_Layer: 0
-  m_Name: Coronal Variant 1
+  m_Name: Coronal 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -882,8 +882,8 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.05505095
-          value: 1
+          time: 0.116276845
+          value: 0.7407417
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -891,7 +891,7 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.07962529
+          time: 0.20547216
           value: 0
           inSlope: 0
           outSlope: 0
