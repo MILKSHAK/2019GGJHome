@@ -29,6 +29,20 @@ public class PlayerController : MonoBehaviour
 		_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 
+	private void OnEnable() {
+		EventBus.Subscribe<EventType>(OnEvent);
+	}
+
+	private void OnDisable() {
+		EventBus.Unsubscribe<EventType>(OnEvent);
+	}
+
+	private void OnEvent(EventType ev) {
+		if (ev == EventType.PlayerDestroy) {
+			Destroy(gameObject);
+		}
+	}
+
 	private void FixedUpdate()
 	{
 		if (GameInput.MoveAxis.y != 0)

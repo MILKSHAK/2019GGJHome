@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	public bool isDead { get; private set; }
+
 	public float initialBoostSpeed; // 引擎加速
 
 	public float initialConstSpeed; // 受太阳吸引速度
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
 		}
 		else if (eventType == EventType.PlayerDestroy)
 		{
-
+			isDead = true;
 		}
 		return;
 	}
