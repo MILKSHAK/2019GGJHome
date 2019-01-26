@@ -11,30 +11,21 @@ public static class GameInput {
         }
     }
 
-    public static bool Boost {
-        get {
-            return input.GetButton("Boost");
+    public class ButtonWrapper {
+        string btn;
+
+        public ButtonWrapper(string btn) {
+            this.btn = btn;
         }
+
+        public bool Pressing => input.GetButton(btn);
+        public bool Down => input.GetButtonDown(btn);
+        public bool Up => input.GetButtonUp(btn);
     }
 
-    public static bool BoostDown {
-        get {
-            return input.GetButtonDown("Boost");
-        }
-    }
-
-    public static bool Shoot {
-        get {
-            return input.GetButton("Shoot");
-        }
-    }
-
-    public static bool ShootDown {
-        get {
-            return input.GetButtonDown("Shoot");
-        }
-    }
-
+    public static readonly ButtonWrapper
+        Boost = new ButtonWrapper("Boost"),
+        Shoot = new ButtonWrapper("Shoot");
 
     private static Player input {
         get {
