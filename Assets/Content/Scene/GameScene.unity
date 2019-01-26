@@ -1054,11 +1054,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1268867142}
     m_Modifications:
-    - target: {fileID: 2291177831946947512, guid: f622720c1fe47954389ce9df5c2728ad,
-        type: 3}
-      propertyPath: m_Name
-      value: Layzer
-      objectReference: {fileID: 0}
     - target: {fileID: 2291177831946947513, guid: f622720c1fe47954389ce9df5c2728ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1118,6 +1113,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291177831946947512, guid: f622720c1fe47954389ce9df5c2728ad,
+        type: 3}
+      propertyPath: m_Name
+      value: Layzer
       objectReference: {fileID: 0}
     - target: {fileID: 7998362885905250639, guid: f622720c1fe47954389ce9df5c2728ad,
         type: 3}

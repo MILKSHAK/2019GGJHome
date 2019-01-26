@@ -30,6 +30,8 @@ public class SpeedLineGenerator : MonoBehaviour {
 
     List<GameObject> pool = new List<GameObject>();
 
+    GameManager _gameManager; 
+
     GameObject CreateInstance(Vector2 pos) {
         if (pool.Count == 0) {
             var ret = Instantiate(prefab, transform);
@@ -44,6 +46,7 @@ public class SpeedLineGenerator : MonoBehaviour {
     }
 
     IEnumerator Start() {
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         while (true) {
             var myLen = Random.Range(1, 1 + lengthRF) * length;
             var myY = Random.Range(-genHeight, genHeight);
@@ -62,10 +65,16 @@ public class SpeedLineGenerator : MonoBehaviour {
 
     void Update() {
         bool boost = GameInput.Boost.Pressing;
+        bool dead = _gameManager.isDead;
+        if (dead) {
+            boost = false;
+        }
         
         float targetSpeedFactor = boost ? boostSpeedFactor : 1.0f;
         float targetLength = boost ? boostLength : idleLength;
         float targetAlpha = boost ? 0.9f : 0.5f;
+
+        if (dead) targetLength *= 0.2f;
 
         speedFactor = Mathf.MoveTowards(speedFactor, targetSpeedFactor, 8.0f * Time.deltaTime);
         length = Mathf.MoveTowards(length, targetLength, 1.0f * Time.deltaTime);
