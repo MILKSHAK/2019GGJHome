@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 	[NonSerialized]
 	public DeathReason deathReason;
 
+	public Material planetHeatMaterial;
+
+	public GameObject explodePrefab;
+
 	public float initialBoostSpeed; // 引擎加速
 
 	[Header("受太阳吸引速度")]

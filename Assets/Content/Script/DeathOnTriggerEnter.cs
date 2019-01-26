@@ -16,9 +16,9 @@ public class DeathOnTriggerEnter : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (!_gameManager.isDead) {
-            EventBus.Post(EventType.PlayerDestroy);
+        if (other.GetComponent<PlayerController>() && !_gameManager.isDead) {
             _gameManager.deathReason = deathReason;
+            EventBus.Post(EventType.PlayerDestroy);
 
             if (effectPrefab) {
                 GameObject.Instantiate(effectPrefab, transform.position, Quaternion.identity);

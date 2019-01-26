@@ -15,10 +15,15 @@ public class Sun : MonoBehaviour {
 
     public Transform conoralCenter;
 
+    public AnimationCurve glowAlphaOverDist, glowSclOverDist;
+
+    SpriteRenderer _glowSprite;
+
     GameManager _gameManager; 
     
     void Start() {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _glowSprite = transform.Find("Glow").GetComponent<SpriteRenderer>();
         StartCoroutine(ActionConoral());
     }
 
@@ -38,8 +43,24 @@ public class Sun : MonoBehaviour {
         }
     }
 
+    void Update() {
+        var player = GameObject.FindWithTag("Player");
+        if (!player)
+            return;
+        var dist = ((Vector2) (transform.position - player.transform.position)).magnitude;
+
+        var perlinScale = 1.0f + Mathf.PerlinNoise(0, Time.time * 4.0f) * 0.07f;
+        var alpha = glowAlphaOverDist.Evaluate(dist) * perlinScale; 
+        var scl = glowSclOverDist.Evaluate(dist) * perlinScale;
+
+        _glowSprite.transform.localScale = new Vector3(scl, scl, 1);
+        var ncol = _glowSprite.color;
+        ncol.a = alpha;
+        _glowSprite.color = ncol;
+    }
+
     void OnTriggerEnter2D(Collider2D other) {
-        if (!_gameManager.isDead) {
+        if (other.GetComponent<PlayerController>() && !_gameManager.isDead) {
             print("Dead!!" + other);
             _gameManager.deathReason = DeathReason.Burn;
             EventBus.Post(EventType.PlayerDestroy);

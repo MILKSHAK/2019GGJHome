@@ -43,6 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422d1b35ff0d87643b67ae872129cebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planetHeatMaterial: {fileID: 2100000, guid: 53e010c9f671159408ba43d37c863f0e, type: 2}
+  explodePrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3,
+    type: 3}
   initialBoostSpeed: 5
   initialConstSpeed: -2
   initialEnergy: 10

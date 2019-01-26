@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1391582941674873788}
   - component: {fileID: 1391582941674873779}
   - component: {fileID: 1391582941674873778}
+  - component: {fileID: 2609747734187509213}
   m_Layer: 12
   m_Name: Muxing
   m_TagString: Untagged
@@ -134,3 +135,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.83
+--- !u!114 &2609747734187509213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391582941674873777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2644d18ca61e714381be118e485a374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
