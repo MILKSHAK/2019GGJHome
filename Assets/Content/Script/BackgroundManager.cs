@@ -26,18 +26,19 @@ public class BackgroundManager : MonoBehaviour
 
 	private void Update()
 	{
-		float scrollUpdate = _scrollSpeed * Time.deltaTime;
-		transform.Translate(new Vector3(_scrollSpeed, 0, 0));
+		
 		UpdateBGScroll();
 	}
 
 	private void UpdateBGScroll()
 	{
+		float scrollUpdate = _scrollSpeed * Time.deltaTime;
 		foreach (Transform bgTrans in _backgrounds)
 		{
+			bgTrans.Translate(new Vector3(_scrollSpeed, 0, 0));
 			if (bgTrans.position.x <= _updatePoint.x)
 			{
-				bgTrans.Translate(bgTrans.position + _scrollUpdate);
+				bgTrans.Translate(2 * _scrollUpdate);
 			}
 		}
 		return;
