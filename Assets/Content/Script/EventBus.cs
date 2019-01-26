@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EventType
+{
+	PickupEnergy,
+	HitObject,
+	HitPlayer,
+	PlayerDestroy,
+}
+
 public static class EventBus {
 
 	public delegate void EventHandler<T>(T ev);

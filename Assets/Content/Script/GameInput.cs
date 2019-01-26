@@ -29,7 +29,7 @@ public static class GameInput {
 
     private static Player input {
         get {
-            return ReInput.players.GetPlayer(1);
+            return ReInput.players.GetPlayer(0);
         }
     }
 
