@@ -56,8 +56,8 @@ public class SpeedLineGenerator : MonoBehaviour {
             nscl.x = length * lengthScl;
             instance.transform.localScale = nscl;
 
-            instance.transform.position += Vector3.right * spd * Time.deltaTime;
-            if (instance.transform.position.x > edge) {
+            instance.transform.position -= Vector3.right * spd * Time.deltaTime;
+            if (instance.transform.position.x < -edge) {
                 pool.Add(instance);
                 yield break;
             }
