@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4700609901730988322}
   - component: {fileID: 684957487401971275}
   - component: {fileID: 3795783891632261104}
+  - component: {fileID: 9137299145955255581}
   m_Layer: 0
   m_Name: Coronal 1
   m_TagString: Untagged
@@ -48,7 +49,7 @@ ParticleSystem:
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4777,6 +4778,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingLayerID: 1267447707
   sortingOrder: 1
+--- !u!114 &9137299145955255581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778623269230714977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc65ce653c0f7494d9f890a1cbc03dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 5
 --- !u!1 &3048636837795313913
 GameObject:
   m_ObjectHideFlags: 0
