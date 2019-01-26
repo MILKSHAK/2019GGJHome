@@ -13,7 +13,7 @@ public class BackgroundManager : MonoBehaviour
 	private void Update()
 	{
 		float scrollUpdate = _scrollSpeed * Time.deltaTime;
-		_background.Translate(new Vector3(_scrollSpeed * scrollUpdate, 0, 0));
+		_background.Translate(new Vector3(_scrollSpeed, 0, 0));
 	}
 
 }

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
 	private GameManager _gameManager;
 
-	private float _currentSpeed = 0;
+	public float _currentSpeed = 0;
 
 	private bool _boosting = false;
 
