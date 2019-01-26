@@ -4,6 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+[Serializable]
+public class SoundEffect
+{
+	public string name;
+	public AudioClip clip;
+}
+
 public class GameManager : MonoBehaviour
 {
 	public bool isDead { get; private set; }
@@ -40,6 +48,13 @@ public class GameManager : MonoBehaviour
 
 	public float currentSpeed;
 
+	private AudioSource _audioSource;
+
+	[SerializeField]
+	private SoundEffect[] _soundEffects;
+
+	private List<SoundEffect> _soundEffectList;
+
 	private void Start()
 	{
 		EventBus.Subscribe<EnumEventType>(OnEvent);
@@ -58,6 +73,8 @@ public class GameManager : MonoBehaviour
 	private void SetupGame()
 	{
 		currentEnergy = initialEnergy;
+		_audioSource = GetComponent<AudioSource>();
+		_soundEffectList = new List<SoundEffect>(_soundEffects);
 	}
 
 	private void OnEvent(EnumEventType eventType)
@@ -68,11 +85,11 @@ public class GameManager : MonoBehaviour
 		}
 		else if (eventType == EnumEventType.HitObstacleSmall)
 		{
-			OnHitObstacle();
+			OnHitSmall();
 		}
 		else if (eventType == EnumEventType.HitObstacleBig)
 		{
-			OnHitPlayer();
+			OnHitBig();
 		}
 		else if (eventType == EnumEventType.PlayerDestroy)
 		{
@@ -88,18 +105,24 @@ public class GameManager : MonoBehaviour
 		return;
 	}
 
-	private void OnHitObstacle()
+	private void OnHitSmall()
 	{
+		_audioSource.clip = _soundEffectList.Find(x => x.name == "HitSmall").clip;
+		_audioSource.Play();
 		return;
 	}
 
-	private void OnHitPlayer()
+	private void OnHitBig()
 	{
+		_audioSource.clip = _soundEffectList.Find(x => x.name == "HitBig").clip;
+		_audioSource.Play();
 		return;
 	}
 
 	private void OnPlayerDead()
 	{
+		_audioSource.clip = _soundEffectList.Find(x => x.name == "PlayerDead").clip;
+		_audioSource.Play();
 		return;
 	}
 }

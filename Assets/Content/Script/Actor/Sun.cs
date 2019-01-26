@@ -19,11 +19,14 @@ public class Sun : MonoBehaviour {
 
     SpriteRenderer _glowSprite;
 
-    GameManager _gameManager; 
+    GameManager _gameManager;
+
+	AudioSource _audioSource;
     
     void Start() {
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _glowSprite = transform.Find("Glow").GetComponent<SpriteRenderer>();
+		_audioSource = GetComponent<AudioSource>();
         StartCoroutine(ActionConoral());
     }
 
@@ -40,7 +43,10 @@ public class Sun : MonoBehaviour {
             yield return new WaitForSeconds(conoralDelayAfterPre);
 
             Instantiate(prefabConoral, conoralCenter.transform.position, rot);
-        }
+
+			_audioSource.Play();
+
+		}
     }
 
     void Update() {
