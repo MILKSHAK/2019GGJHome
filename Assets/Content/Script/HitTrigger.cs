@@ -13,9 +13,9 @@ public class HitTrigger : MonoBehaviour
 {
 	public HitType _hitType;
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (other.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player")
 		{
 			if (_hitType == HitType.HitObject)
 			{

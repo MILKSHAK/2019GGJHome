@@ -7,11 +7,11 @@ public class Bullet : MonoBehaviour
 {
 	public float damage;
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (other.gameObject.tag == "Obstacle")
+		if (collision.gameObject.tag == "Obstacle")
 		{
-			IDamagable damageTaker = other.gameObject.GetComponent<IDamagable>();
+			IDamagable damageTaker = collision.gameObject.GetComponent<IDamagable>();
 			damageTaker.TakeDamage(damage);
 		}
 	}

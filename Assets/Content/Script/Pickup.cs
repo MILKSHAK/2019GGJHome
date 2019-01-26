@@ -12,9 +12,9 @@ public class Pickup : MonoBehaviour
 {
 	public PickupType _pickupType;
 
-	private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (other.gameObject.tag == "Player")
+		if (collision.gameObject.tag == "Player")
 		{
 			if (_pickupType == PickupType.Energy)
 			{
