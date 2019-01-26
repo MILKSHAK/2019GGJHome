@@ -39,8 +39,13 @@ public class PlayerController : MonoBehaviour
 
 	private void OnEvent(EventType ev) {
 		if (ev == EventType.PlayerDestroy) {
-			Destroy(gameObject);
+			StartCoroutine(ActionDestroy());
 		}
+	}
+
+	IEnumerator ActionDestroy() {
+		yield return null;
+		Destroy(gameObject);
 	}
 
 	private void FixedUpdate()

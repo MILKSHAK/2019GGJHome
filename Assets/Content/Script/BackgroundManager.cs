@@ -16,6 +16,13 @@ public class BackgroundManager : MonoBehaviour
 	[SerializeField]
 	private Vector3 _updatePoint = new Vector3(-23f, 0, 0);
 
+	void Start() {
+		EventBus.Subscribe<EventType>(ev => {
+			if (ev == EventType.PlayerDestroy) {
+				Destroy(this);
+			}
+		});
+	}
 
 	private void Update()
 	{

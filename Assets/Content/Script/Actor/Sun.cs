@@ -7,7 +7,7 @@ public class Sun : MonoBehaviour {
     GameManager _gameManager; 
     
     void Start() {
-        GameObject.Find("GameManager").GetComponent<GameManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
