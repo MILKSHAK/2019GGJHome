@@ -282,13 +282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scrollSpeed: -0.01
-  _background: {fileID: 389335290}
---- !u!4 &389335290 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4135981101156608956, guid: 0baefa15a494bd74f977225c181c73ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 389335287}
-  m_PrefabAsset: {fileID: 0}
+  _backgrounds: []
+  _scrollUpdate: {x: 21.5, y: 0, z: 0}
+  _updatePoint: {x: -23, y: 0, z: 0}
 --- !u!1 &606075033
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &792810956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1109,6 +1105,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6246933029569346260, guid: 28bb7b4bc7b9884458fac288b7c37977,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6246933029569346258, guid: 28bb7b4bc7b9884458fac288b7c37977,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1164,6 +1165,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6246933029569346259, guid: 28bb7b4bc7b9884458fac288b7c37977,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 05d75de72ccb2ee4da6fcae36e901728,
+        type: 3}
     - target: {fileID: 6246933029569346271, guid: 28bb7b4bc7b9884458fac288b7c37977,
         type: 3}
       propertyPath: _constantSpeed

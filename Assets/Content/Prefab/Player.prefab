@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6246933029569346271}
   - component: {fileID: 6246933029569346257}
   - component: {fileID: 6246933029569346256}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -68,10 +68,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1267447707
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bc49b22c5555d61488efb201b5e28e53, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 05d75de72ccb2ee4da6fcae36e901728, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 3
   _deaccelerateRate: 1
-  _constantForce: {x: 0, y: 0}
+  _lazerPrefab: {fileID: 0}
+  _currentSpeed: 0
 --- !u!61 &6246933029569346257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.47, y: 0.23}
+    oldSize: {x: 3.22, y: 3.55}
     newSize: {x: 0.47, y: 0.23}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
