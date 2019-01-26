@@ -1,0 +1,10 @@
+{
+    "name": "Plugins.FMOD.Editor",
+    "references": [
+        "Plugins.FMOD"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

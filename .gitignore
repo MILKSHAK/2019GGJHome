@@ -34,8 +34,6 @@ sysinfo.txt
 # FMOD Temporary files
 Assets/FMODStudioCache.asset
 Assets/FMODStudioCache.asset.meta
-Assets/StreamingAssets/*.bank
-Assets/StreamingAssets/*.bank.meta
 
 # Odin Inspector Temporary files
 Assets/Plugins/Sirenix/Assemblies/Editor/GeneratedOdinEditors.dll
