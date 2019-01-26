@@ -51,7 +51,7 @@ namespace UnityEditor.PostProcessing
 
         void OnWheelGUI(Rect position, int size, SerializedProperty property)
         {
-            if (Event.current.type == EnumEventType.Layout)
+            if (Event.current.type == EventType.Layout)
                 return;
 
             var value = property.colorValue;
@@ -73,7 +73,7 @@ namespace UnityEditor.PostProcessing
             Vector3 hsv;
             Color.RGBToHSV(value, out hsv.x, out hsv.y, out hsv.z);
 
-            if (Event.current.type == EnumEventType.Repaint)
+            if (Event.current.type == EventType.Repaint)
             {
                 float scale = EditorGUIUtility.pixelsPerPoint;
 
@@ -189,7 +189,7 @@ namespace UnityEditor.PostProcessing
             var mousePos = e.mousePosition;
             var relativePos = mousePos - new Vector2(bounds.x, bounds.y);
 
-            if (e.type == EnumEventType.MouseDown && GUIUtility.hotControl == 0 && bounds.Contains(mousePos))
+            if (e.type == EventType.MouseDown && GUIUtility.hotControl == 0 && bounds.Contains(mousePos))
             {
                 if (e.button == 0)
                 {
@@ -211,13 +211,13 @@ namespace UnityEditor.PostProcessing
                     m_ResetState = true;
                 }
             }
-            else if (e.type == EnumEventType.MouseDrag && e.button == 0 && GUIUtility.hotControl == id)
+            else if (e.type == EventType.MouseDrag && e.button == 0 && GUIUtility.hotControl == id)
             {
                 e.Use();
                 GUI.changed = true;
                 GetWheelHueSaturation(relativePos.x, relativePos.y, radius, out hsv.x, out hsv.y);
             }
-            else if (e.rawType == EnumEventType.MouseUp && e.button == 0 && GUIUtility.hotControl == id)
+            else if (e.rawType == EventType.MouseUp && e.button == 0 && GUIUtility.hotControl == id)
             {
                 e.Use();
                 GUIUtility.hotControl = 0;

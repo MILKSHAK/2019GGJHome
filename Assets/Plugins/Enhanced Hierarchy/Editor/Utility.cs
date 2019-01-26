@@ -36,7 +36,7 @@ namespace EnhancedHierarchy {
             var fps = 0d;
             var lastTime = 0d;
             var content = new GUIContent();
-            var evt = EnumEventType.Repaint;
+            var evt = EventType.Repaint;
 
             EditorApplication.hierarchyWindowItemOnGUI += (id, rect) => {
                 using (ProfilerSample.Get("Enhanced Hierarchy"))
@@ -46,7 +46,7 @@ namespace EnhancedHierarchy {
 
                     evt = Event.current.type;
 
-                    if (evt == EnumEventType.Repaint)
+                    if (evt == EventType.Repaint)
                         frames++;
 
                     if (EditorApplication.timeSinceStartup - lastTime < 0.5d)
