@@ -25,10 +25,10 @@ public class PlayerController : MonoBehaviour
 	private float _accelerateRate = 3;
 
 	[SerializeField]
-	private float _hitImpactSmall = 1;
+	private float _hitImpactSmall = 0.5f;
 
 	[SerializeField]
-	private float _hitImpactBig = 3;
+	private float _hitImpactBig = 1;
 
 	[SerializeField]
 	private Transform _lazerPrefab;
@@ -83,25 +83,27 @@ public class PlayerController : MonoBehaviour
 		}
 		else if (ev == EnumEventType.HitObstacleSmall)
 		{
-			OnHitBig();
+			OnHitSmall();
 		}
 		else if (ev == EnumEventType.HitObstacleBig)
 		{
-			OnHitSmall();
+			OnHitBig();
 		}
 	}
 
 	private void OnHitBig()
 	{
 		_rigidbody.velocity = _rigidbody.velocity - new Vector2(_hitImpactBig, 0);
-		// todo: 小撞击效果
+		transform.Translate(new Vector3(-_hitImpactBig, 0, 0));
+		// todo: 大撞击效果
 		return;
 	}
 
 	private void OnHitSmall()
 	{
-		// todo: 大撞击效果
+		// todo: 小撞击效果
 		_rigidbody.velocity = _rigidbody.velocity - new Vector2(_hitImpactSmall, 0);
+		transform.Translate(new Vector3(-_hitImpactSmall, 0, 0));
 		return;
 	}
 
@@ -206,7 +208,7 @@ public class PlayerController : MonoBehaviour
 	public void BoostStart()
 	{
 		_boosting = true;
-		EventBus.Post<EventType>(EventType.PlayerBoostStart);
+		EventBus.Post<EnumEventType>(EnumEventType.PlayerBoostStart);
 		return;
 	}
 

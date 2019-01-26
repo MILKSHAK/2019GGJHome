@@ -33,17 +33,17 @@ public class CameraController : MonoBehaviour
 	private void Start()
 	{
 		_camera = GetComponent<Camera>();
-		EventBus.Subscribe<EventType>(OnEvent);
+		EventBus.Subscribe<EnumEventType>(OnEvent);
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
-	private void OnEvent(EventType ev)
+	private void OnEvent(EnumEventType ev)
 	{
-		if (ev == EventType.PlayerBoostStart)
+		if (ev == EnumEventType.PlayerBoostStart)
 		{
 			boosting = true;
 		}
-		else if (ev == EventType.PlayerBoostEnd)
+		else if (ev == EnumEventType.PlayerBoostEnd)
 		{
 			boosting = false;
 		}
@@ -61,10 +61,9 @@ public class CameraController : MonoBehaviour
 		float maxCamSizeDiff = cameraSizeNormal - cameraSizeSmall;
 		float distCamRate = Mathf.Clamp(currX - camNearPosX, 0, maxCamDistance) / maxCamDistance;
 
-		boostCamRate += (boosting ? -1 : 1) * camBoostSpeed * Time.deltaTime;
-		boostCamRate = Mathf.Clamp(boostCamRate, 0, 1);
+		//boostCamRate += (boosting ? -1 : 1) * camBoostSpeed * Time.deltaTime;
 
-		float fixedSize = maxCamSizeDiff * distCamRate * boostCamRate;
-		_camera.orthographicSize = cameraSizeSmall + fixedSize;
+		float fixedSize = maxCamSizeDiff * distCamRate;
+		_camera.orthographicSize = Mathf.Clamp(cameraSizeSmall + fixedSize, cameraSizeSmall, cameraSizeNormal);
 	}
 }

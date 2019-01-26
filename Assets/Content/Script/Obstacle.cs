@@ -26,7 +26,16 @@ public class Obstacle : MonoBehaviour, IDamagable
     [SerializeField]
     private ObstacleDrop[] obstacleDrops;
 
-    private void Update()
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			Die();
+		}
+		return;
+	}
+
+	private void Update()
     {
         transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
     }
