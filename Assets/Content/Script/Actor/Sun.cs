@@ -23,11 +23,11 @@ public class Sun : MonoBehaviour {
     }
 
     IEnumerator ActionConoral() {
+        yield return new WaitForSeconds(15.0f);
         while (true) {
             yield return new WaitForSeconds(
                 Random.Range(conoralTriggerIntervalMin, conoralTriggerIntervalMax)
             );
-            print("???");
 
             var rot = Quaternion.Euler(0, 90, 0);
             Instantiate(prefabConoralPre, conoralCenter.transform.position, rot);

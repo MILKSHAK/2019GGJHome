@@ -8,8 +8,11 @@ Shader "Sprites/EnergyBar"
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
+        _Glow ("Glow", Color) = (1,1,1,1)
         _MaxRadians ("MaxRadians", Float) = 0.8
         _Progress ("Progress", Float) = 1.0
+        _MinRad ("MinRad", Float) = 1.0
+        _MaxRad ("MaxRad", Float) = 1.0
 
         [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
@@ -48,40 +51,29 @@ Shader "Sprites/EnergyBar"
             float pi = 3.1415926;
 
             float _MaxRadians, _Progress;
-
-            float perlin(float2 coord) {
-                return tex2D(_PerlinTex, coord).r;
-            }
+            float _MinRad, _MaxRad;
+            float4 _Glow;
 
             fixed4 SunFrag(v2f IN) : SV_Target
             {
                 float2 uv0 = 2.0 * (IN.texcoord - 0.5);
                 float alpha = atan2(uv0.y, uv0.x);
-                alpha = alpha + pi / 2;
+                alpha = alpha + 3.14159 / 2;
+
+                float r = dot(uv0, uv0);
 
                 float thresh = _MaxRadians * _Progress;
-                if (abs(alpha) < thresh) {
-                    return 0.0;
-                }
+                float dthresh = max(abs(alpha) - thresh, 0);
+                float dr = max(0, max(_MinRad - r, r - _MaxRad));
+                float d = max(dthresh, dr);
+                float glow = min(1, sqrt(d) / 0.5);
+                float a2 = d < 0.01 ? 1 : 1 - glow;
 
-                return SampleSpriteTe
+                fixed4 c = SampleSpriteTexture(IN.texcoord) * lerp(IN.color, _Glow, glow);
+                c.a *= a2;
 
-                float dr = perlin(float2(alpha / 3.141, 0.3 * _Time.y)) * 0.3;
-
-                float r = dot(uv0, uv0) * (1 +  dr);
-                float p = (pow(r, 3.0) + 0.3);
-
-                uv0 *= p;
-                uv1 *= p;
-                uv2 *= p;
-
-                float fire = dot(float3(
-                    tex2D(_NoiseTex, uv0 * enlarge.x).x,
-                    tex2D(_NoiseTex, uv1 * enlarge.y).y,
-                    tex2D(_NoiseTex, uv2 * enlarge.z).z
-                ), smoothstep(float3(0.5, 0.5, 0.5), float3(0.0, 0.0, 0.0),  abs(frac(enlarge) - 0.5) ));
-
-                return lerp(colA, colB, fire) - r * r * 1.75;
+                c.rgb *= c.a;
+                return c;
             }
             /*
 void mainImage( out vec4 fragColor, in vec2 fragCoord )

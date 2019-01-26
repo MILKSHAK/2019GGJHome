@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
 	public float _currentSpeed = 0;
 
+	public Material energyMat;
+
 	private bool _boosting = false;
 
 	private bool _firing = false;
@@ -56,6 +58,14 @@ public class PlayerController : MonoBehaviour
 	IEnumerator ActionDestroy() {
 		yield return null;
 		Destroy(gameObject);
+	}
+
+	float _displayEnergy = .0f;
+
+	void Update() {
+		float energyRatio = _gameManager.currentEnergy / _gameManager.initialEnergy;
+		_displayEnergy = Mathf.MoveTowards(_displayEnergy, energyRatio, Time.deltaTime * 1.0f);
+		energyMat.SetFloat("_Progress", _displayEnergy);
 	}
 
 	private void FixedUpdate()
