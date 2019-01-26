@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
 		_lazer = Instantiate(_lazerPrefab, transform);
 		_lazer.gameObject.SetActive(false);
 		_lazerAnimator = _lazer.Find("Lazer").GetComponent<Animator>();
+
+		energyMat = Instantiate(energyMat);
+		transform.Find("_UIBar").GetComponent<SpriteRenderer>().material = energyMat;
+		transform.Find("_UIBar2").GetComponent<SpriteRenderer>().material = energyMat;
 	}
 
 	private void OnEnable() {
