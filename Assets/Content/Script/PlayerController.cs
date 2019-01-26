@@ -25,13 +25,17 @@ public class PlayerController : MonoBehaviour
 	private float _accelerateRate = 3;
 
 	[SerializeField]
+	private float _hitImpactSmall = 1;
+
+	[SerializeField]
+	private float _hitImpactBig = 3;
+
+	[SerializeField]
 	private Transform _lazerPrefab;
 
 	private Rigidbody2D _rigidbody;
 
 	private GameManager _gameManager;
-
-	public float _currentSpeed = 0;
 
 	public Material energyMat;
 
@@ -77,6 +81,28 @@ public class PlayerController : MonoBehaviour
 				StartCoroutine(ActionDestroyCollision());
 			}
 		}
+		else if (ev == EventType.HitObstacleSmall)
+		{
+			OnHitBig();
+		}
+		else if (ev == EventType.HitObstacleBig)
+		{
+			OnHitSmall();
+		}
+	}
+
+	private void OnHitBig()
+	{
+		_rigidbody.velocity = _rigidbody.velocity - new Vector2(_hitImpactBig, 0);
+		// todo: 小撞击效果
+		return;
+	}
+
+	private void OnHitSmall()
+	{
+		// todo: 大撞击效果
+		_rigidbody.velocity = _rigidbody.velocity - new Vector2(_hitImpactSmall, 0);
+		return;
 	}
 
 	IEnumerator ActionDestroy() {

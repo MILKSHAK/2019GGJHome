@@ -67,7 +67,7 @@ public class Obstacle : MonoBehaviour, IDamagable
 
 	public Vector3 GetRandomPos()
 	{
-		Vector3 randPos = new Vector3(UnityEngine.Random.Range(-dropRange, dropRange), UnityEngine.Random.Range(-dropRange, dropRange));
+		Vector3 randPos = transform.position + new Vector3(UnityEngine.Random.Range(-dropRange, dropRange), UnityEngine.Random.Range(-dropRange, dropRange));
 		return randPos;
 	}
 }

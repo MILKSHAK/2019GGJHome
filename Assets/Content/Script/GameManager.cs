@@ -66,11 +66,11 @@ public class GameManager : MonoBehaviour
 		{
 			OnPickEnergy();
 		}
-		else if (eventType == EventType.HitObstacle)
+		else if (eventType == EventType.HitObstacleSmall)
 		{
 			OnHitObstacle();
 		}
-		else if (eventType == EventType.HitPlayer)
+		else if (eventType == EventType.HitObstacleBig)
 		{
 			OnHitPlayer();
 		}
