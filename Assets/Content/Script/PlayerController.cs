@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			if (_currentSpeed > _gameManager.initialConstSpeed)
+			if (_rigidbody.velocity.x > _gameManager.initialConstSpeed)
 			{
 				_currentSpeed = _currentSpeed - Time.fixedDeltaTime * _deaccelerateRate;
 				_rigidbody.AddForce(new Vector2(-_deaccelerateRate, 0));
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
 	public void BoostUpdate()
 	{
-		if (_boosting && _gameManager.currentEnergy > 0)
+		if (_boosting && _gameManager.currentEnergy > 0 && _rigidbody.velocity.x < _maxSpeed)
 		{
 			_currentSpeed = _currentSpeed + Time.fixedDeltaTime * _gameManager.initialBoostSpeed;
 			_rigidbody.AddForce(new Vector2(_deaccelerateRate, 0));

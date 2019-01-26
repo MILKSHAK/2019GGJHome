@@ -620,11 +620,16 @@ PrefabInstance:
     - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
         type: 3}
       propertyPath: initialBoostSpeed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
         type: 3}
       propertyPath: currentEnergy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
+        type: 3}
+      propertyPath: initialEnergy
       value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
