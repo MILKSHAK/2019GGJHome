@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,12 +22,21 @@ public class PlayerController : MonoBehaviour
 
 	private bool _boosting = false;
 
-	private GameObject _firedLazer;
+	private bool _firing = false;
+
+	private Transform _lazer;
+
+	private Animator _lazerAnimator;
+
+
 
 	private void Start()
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
 		_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		_lazer = Instantiate(_lazerPrefab, transform);
+		_lazer.gameObject.SetActive(false);
+		_lazerAnimator = _lazer.Find("Lazer").GetComponent<Animator>();
 	}
 
 	private void OnEnable() {
@@ -94,12 +104,16 @@ public class PlayerController : MonoBehaviour
 		{
 			FireStart();
 		}
+		else if (GameInput.Shoot.Pressing)
+		{
+			FireUpdate();
+		}
 		else if (GameInput.Shoot.Up)
 		{
 			FireFinish();
 		}
 
-		if (!_boosting)
+		if (!_boosting && !_firing)
 		{
 			_gameManager.currentEnergy += _gameManager.energyRecovery * Time.fixedDeltaTime;
 		}
@@ -134,20 +148,29 @@ public class PlayerController : MonoBehaviour
 
 	public void FireStart()
 	{
-		if (_firedLazer == null)
+		if (_lazerAnimator != null)
 		{
-			_firedLazer = Instantiate(_lazerPrefab).gameObject;
+			_firing = true;
+			_lazer.gameObject.SetActive(true);
+			_lazerAnimator.SetBool("Fire", true);
 		}
 
 		return;
 	}
 
+	private void FireUpdate()
+	{
+		_gameManager.currentEnergy -= _gameManager.energyCost * Time.deltaTime;
+		return;
+	}
+
 	public void FireFinish()
 	{
-		if (_firedLazer != null)
+		if (_lazerAnimator != null)
 		{
-			Destroy(_firedLazer);
-			_firedLazer = null;
+			_firing = false;
+			_lazer.gameObject.SetActive(false);
+			_lazerAnimator.SetBool("Fire", false);
 		}
 		
 		return;

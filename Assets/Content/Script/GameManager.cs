@@ -31,6 +31,11 @@ public class GameManager : MonoBehaviour
 		SetupGame();
 	}
 
+	private void Update()
+	{
+		_runningTime = Time.time;
+	}
+
 	private void SetupGame()
 	{
 		currentEnergy = initialEnergy;

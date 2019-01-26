@@ -97,7 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 3
   _deaccelerateRate: 3
-  _lazerPrefab: {fileID: 0}
+  _lazerPrefab: {fileID: 4798468740714071848, guid: ff34611b95947fb4f8d02d0a07c2abb2,
+    type: 3}
   _currentSpeed: 0
 --- !u!50 &6246933029569346256
 Rigidbody2D:
