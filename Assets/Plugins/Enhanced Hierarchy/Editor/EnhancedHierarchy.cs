@@ -117,7 +117,7 @@ namespace EnhancedHierarchy {
                 EditorGUI.DrawRect(FullSizeRect, tint);
 
             switch (Event.current.type) {
-                case EventType.MouseMove:
+                case EnumEventType.MouseMove:
                     Event.current.Use();
                     break;
             }
@@ -344,7 +344,7 @@ namespace EnhancedHierarchy {
         }
 
         private static void TagMiniLabel(ref Rect rect) {
-            if (Event.current.type == EventType.Layout)
+            if (Event.current.type == EnumEventType.Layout)
                 return;
 
             using (ProfilerSample.Get())
@@ -362,7 +362,7 @@ namespace EnhancedHierarchy {
         }
 
         private static void LayerMiniLabel(ref Rect rect) {
-            if (Event.current.type == EventType.Layout)
+            if (Event.current.type == EnumEventType.Layout)
                 return;
 
             using (ProfilerSample.Get())
@@ -553,7 +553,7 @@ namespace EnhancedHierarchy {
                 rect.xMin = 0f;
 
                 switch (Event.current.type) {
-                    case EventType.MouseDrag:
+                    case EnumEventType.MouseDrag:
                         if (!IsFirstVisible)
                             return;
 
@@ -577,13 +577,13 @@ namespace EnhancedHierarchy {
                         Event.current.Use();
                         break;
 
-                    case EventType.MouseUp:
+                    case EnumEventType.MouseUp:
                         if (DragSelection != null)
                             Event.current.Use();
                         DragSelection = null;
                         break;
 
-                    case EventType.Repaint:
+                    case EnumEventType.Repaint:
                         if (DragSelection == null || !IsFirstVisible)
                             break;
 
@@ -614,7 +614,7 @@ namespace EnhancedHierarchy {
                         EditorApplication.RepaintHierarchyWindow();
                         break;
 
-                    case EventType.Layout:
+                    case EnumEventType.Layout:
                         if (DragSelection != null && IsGameObject)
                             if (!SelectionRect.Overlaps(rect) && DragSelection.Contains(CurrentGameObject))
                                 DragSelection.Remove(CurrentGameObject);

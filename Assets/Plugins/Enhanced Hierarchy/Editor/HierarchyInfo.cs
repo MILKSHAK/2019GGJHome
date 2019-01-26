@@ -34,7 +34,7 @@ namespace EnhancedHierarchy {
         public static GameObject CurrentGameObject { get; private set; }
         public static List<Object> DragSelection { get; private set; }
         public static readonly List<Component> Components = new List<Component>(100);
-        public static EventType LastEventType { get; private set; }
+        public static EnumEventType LastEventType { get; private set; }
 
         public static void SetItemInformation(int id, Rect rect) {
             if (!Preferences.Enabled)
@@ -46,7 +46,7 @@ namespace EnhancedHierarchy {
                     CurrentGameObject = EditorUtility.InstanceIDToObject(id) as GameObject;
 
                     IsGameObject = CurrentGameObject;
-                    IsRepaintEvent = Event.current.type == EventType.Repaint;
+                    IsRepaintEvent = Event.current.type == EnumEventType.Repaint;
                     IsFirstVisible = Event.current.type != LastEventType;
                     LastEventType = Event.current.type;
 

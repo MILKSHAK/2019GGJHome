@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		EventBus.Subscribe<EventType>(OnEvent);
+		EventBus.Subscribe<EnumEventType>(OnEvent);
 		SetupGame();
 	}
 
@@ -60,21 +60,21 @@ public class GameManager : MonoBehaviour
 		currentEnergy = initialEnergy;
 	}
 
-	private void OnEvent(EventType eventType)
+	private void OnEvent(EnumEventType eventType)
 	{
-		if (eventType == EventType.PickupEnergy)
+		if (eventType == EnumEventType.PickupEnergy)
 		{
 			OnPickEnergy();
 		}
-		else if (eventType == EventType.HitObstacleSmall)
+		else if (eventType == EnumEventType.HitObstacleSmall)
 		{
 			OnHitObstacle();
 		}
-		else if (eventType == EventType.HitObstacleBig)
+		else if (eventType == EnumEventType.HitObstacleBig)
 		{
 			OnHitPlayer();
 		}
-		else if (eventType == EventType.PlayerDestroy)
+		else if (eventType == EnumEventType.PlayerDestroy)
 		{
 			OnPlayerDead();
 			isDead = true;

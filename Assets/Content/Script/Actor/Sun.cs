@@ -63,7 +63,7 @@ public class Sun : MonoBehaviour {
         if (other.GetComponent<PlayerController>() && !_gameManager.isDead) {
             print("Dead!!" + other);
             _gameManager.deathReason = DeathReason.Burn;
-            EventBus.Post(EventType.PlayerDestroy);
+            EventBus.Post(EnumEventType.PlayerDestroy);
         }
     }
 

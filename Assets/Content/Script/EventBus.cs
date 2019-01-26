@@ -9,7 +9,7 @@ public enum DeathReason
 	Burn,
 }
 
-public enum EventType
+public enum EnumEventType
 {
 	PickupEnergy,
 	HitObstacleSmall,

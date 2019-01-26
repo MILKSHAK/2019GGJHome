@@ -6,15 +6,15 @@ public class UIDead : MonoBehaviour
 {
 
     void OnEnable() {
-        EventBus.Subscribe<EventType>(OnEvent);
+        EventBus.Subscribe<EnumEventType>(OnEvent);
     }
 
     void OnDisable() {
-        EventBus.Unsubscribe<EventType>(OnEvent);
+        EventBus.Unsubscribe<EnumEventType>(OnEvent);
     }
 
-    void OnEvent(EventType type) {
-        if (type == EventType.PlayerDestroy)
+    void OnEvent(EnumEventType type) {
+        if (type == EnumEventType.PlayerDestroy)
             StartCoroutine(ActionDie());
     }
 

@@ -64,15 +64,15 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void OnEnable() {
-		EventBus.Subscribe<EventType>(OnEvent);
+		EventBus.Subscribe<EnumEventType>(OnEvent);
 	}
 
 	private void OnDisable() {
-		EventBus.Unsubscribe<EventType>(OnEvent);
+		EventBus.Unsubscribe<EnumEventType>(OnEvent);
 	}
 
-	private void OnEvent(EventType ev) {
-		if (ev == EventType.PlayerDestroy) {
+	private void OnEvent(EnumEventType ev) {
+		if (ev == EnumEventType.PlayerDestroy) {
 			transform.Find("_UIBar").gameObject.SetActive(false);
 			transform.Find("_UIBar2").gameObject.SetActive(false);
 			if (_gameManager.deathReason == DeathReason.Burn) {
@@ -81,11 +81,11 @@ public class PlayerController : MonoBehaviour
 				StartCoroutine(ActionDestroyCollision());
 			}
 		}
-		else if (ev == EventType.HitObstacleSmall)
+		else if (ev == EnumEventType.HitObstacleSmall)
 		{
 			OnHitBig();
 		}
-		else if (ev == EventType.HitObstacleBig)
+		else if (ev == EnumEventType.HitObstacleBig)
 		{
 			OnHitSmall();
 		}
