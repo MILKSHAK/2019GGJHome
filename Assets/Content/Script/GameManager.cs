@@ -10,11 +10,14 @@ public class GameManager : MonoBehaviour
 
 	public float initialBoostSpeed; // 引擎加速
 
+	[Header("受太阳吸引速度")]
 	public float initialConstSpeed; // 受太阳吸引速度
 
 	public float initialEnergy;
 
 	public float energyCost;
+
+	public float shootEnergyCost;
 
 	public float energyRecovery;
 

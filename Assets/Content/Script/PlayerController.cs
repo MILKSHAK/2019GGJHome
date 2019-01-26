@@ -6,13 +6,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField]
-	private float _maxSpeed = 3;
+	private Vector2 _maxSpeed = new Vector2(3, 3);
 
 	[SerializeField]
 	private float _deaccelerateRate = -1;
 
 	[SerializeField]
 	private float _boostRate = -1;
+
+	[SerializeField]
+	private float _boostDeaccelerateRate = 3;
 
 	[SerializeField]
 	private float _accelerateRate = 3;
@@ -117,12 +120,12 @@ public class PlayerController : MonoBehaviour
 		{
 			BoostUpdate(ref force);
 		}
-		else if (!GameInput.Boost.Down)
+		else if (!GameInput.Boost.Pressing)
 		{
 			if (_rigidbody.velocity.x > _gameManager.initialConstSpeed)
 			{
 				_gameManager.currentSpeed = _gameManager.currentSpeed - Time.fixedDeltaTime * _deaccelerateRate;
-				force.x += -_boostRate;
+				force.x += -_boostDeaccelerateRate;
 			}
 		}
 
@@ -138,7 +141,8 @@ public class PlayerController : MonoBehaviour
 
 		_rigidbody.AddForce(force);
 		var nvel = _rigidbody.velocity;
-		nvel.y = Mathf.Min(_maxSpeed, Mathf.Abs(nvel.y)) * Mathf.Sign(nvel.y);
+		nvel.x = Mathf.Min(_maxSpeed.x, nvel.x);
+		nvel.y = Mathf.Min(_maxSpeed.y, Mathf.Abs(nvel.y)) * Mathf.Sign(nvel.y);
 		_rigidbody.velocity = nvel;
 	}
 
@@ -150,11 +154,11 @@ public class PlayerController : MonoBehaviour
 
 	public void BoostUpdate(ref Vector2 force)
 	{
-		if (_boosting && _gameManager.currentEnergy > 0 && _rigidbody.velocity.x < _maxSpeed)
+		if (_boosting && _gameManager.currentEnergy > 0)
 		{
 			_gameManager.currentSpeed = _gameManager.currentSpeed + Time.fixedDeltaTime * _gameManager.boostSpeed;
-			force.x += _deaccelerateRate;
-			_gameManager.currentEnergy -= _gameManager.energyCost * Time.fixedDeltaTime;
+			force.x += _boostRate;
+			_gameManager.currentEnergy = Mathf.Max(0, _gameManager.currentEnergy - _gameManager.energyCost * Time.fixedDeltaTime);
 		}
 		else
 		{
@@ -183,7 +187,10 @@ public class PlayerController : MonoBehaviour
 
 	private void FireUpdate()
 	{
-		_gameManager.currentEnergy -= _gameManager.energyCost * Time.deltaTime;
+		_gameManager.currentEnergy = Mathf.Max(0, 
+			_gameManager.currentEnergy - _gameManager.shootEnergyCost * Time.deltaTime);
+		if (_gameManager.currentEnergy == 0)
+			_firing = false;
 		return;
 	}
 

@@ -1833,51 +1833,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: energyRecovery
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: _initialEnergy
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: energyCost
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: _initialConstSpeed
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: _initialBoostSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: initialConstSpeed
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: initialBoostSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: currentEnergy
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334190849342369901, guid: f94099b333304b14b9476fa484ef8742,
-        type: 3}
-      propertyPath: initialEnergy
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f94099b333304b14b9476fa484ef8742, type: 3}
 --- !u!1001 &2357121520882627174
@@ -2016,6 +1971,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246933029569346271, guid: 28bb7b4bc7b9884458fac288b7c37977,
+        type: 3}
+      propertyPath: _boostDeaccelerateRate
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28bb7b4bc7b9884458fac288b7c37977, type: 3}

@@ -43,9 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422d1b35ff0d87643b67ae872129cebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialBoostSpeed: 0
-  _initialConstSpeed: 0
-  _initialEnergy: 0
-  energyCost: 0
-  energyRecovery: 0
+  initialBoostSpeed: 5
+  initialConstSpeed: -2
+  initialEnergy: 10
+  energyCost: 2.5
+  shootEnergyCost: 3
+  energyRecovery: 1.5
   currentEnergy: 0
+  pickUpEnergy: 0
+  boostSpeed: 0
+  currentSpeed: 0

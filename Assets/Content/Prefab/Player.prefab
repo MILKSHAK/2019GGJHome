@@ -175,9 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7188e38d19a4a40bf88bbbba8e0320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 3
+  _maxSpeed: {x: 3, y: 3.5}
   _deaccelerateRate: 5
-  _boostRate: 3
+  _boostRate: 4
+  _boostDeaccelerateRate: 2
   _accelerateRate: 3
   _lazerPrefab: {fileID: 4798468740714071848, guid: ff34611b95947fb4f8d02d0a07c2abb2,
     type: 3}
