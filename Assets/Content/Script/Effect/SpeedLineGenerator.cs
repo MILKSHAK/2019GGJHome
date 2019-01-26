@@ -15,6 +15,16 @@ public class SpeedLineGenerator : MonoBehaviour {
     public float spd, spdRF;
     public float edge;
 
+    [Header("Dynamic Effects")]
+    public float idleLength;
+
+    public float boostLength;
+
+    public float boostSpeedFactor;
+
+    float speedFactor = 1.0f;
+
+    float alphaFactor = 0.0f;
 
     const float BlendTime = 0.2f;
 
@@ -50,17 +60,34 @@ public class SpeedLineGenerator : MonoBehaviour {
         }
     }
 
+    void Update() {
+        bool boost = GameInput.Boost.Pressing;
+        
+        float targetSpeedFactor = boost ? boostSpeedFactor : 1.0f;
+        float targetLength = boost ? boostLength : idleLength;
+        float targetAlpha = boost ? 0.9f : 0.5f;
+
+        speedFactor = Mathf.MoveTowards(speedFactor, targetSpeedFactor, 8.0f * Time.deltaTime);
+        length = Mathf.MoveTowards(length, targetLength, 1.0f * Time.deltaTime);
+        alphaFactor = Mathf.MoveTowards(alphaFactor, targetAlpha, Time.deltaTime * 0.5f);
+    }
+
     IEnumerator UpdateEntry(GameObject instance, float spd, float lengthScl) {
+        var sr = instance.GetComponent<SpriteRenderer>();
+            var speedAlphaScl = Mathf.Lerp(0.5f, 1.0f, ((spd - this.spd) / this.spd) / spdRF);
         while (true) {
             var nscl = instance.transform.localScale;
             nscl.x = length * lengthScl;
             instance.transform.localScale = nscl;
 
-            instance.transform.position -= Vector3.right * spd * Time.deltaTime;
+            instance.transform.position -= Vector3.right * spd * speedFactor * Time.deltaTime;
             if (instance.transform.position.x < -edge) {
                 pool.Add(instance);
                 yield break;
             }
+
+            var color = new Color(1.0f, 1.0f, 1.0f, alphaFactor * speedAlphaScl);
+            sr.color = color;
 
             yield return null;
         }
