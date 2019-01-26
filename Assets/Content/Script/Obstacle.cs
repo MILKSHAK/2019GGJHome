@@ -12,6 +12,8 @@ public class Obstacle : MonoBehaviour, IDamagable
 
 	public float speed = -1;
 
+	public bool canDestroy = false;
+
 	[Serializable]
 	public class ObstacleDrop
 	{
@@ -29,6 +31,10 @@ public class Obstacle : MonoBehaviour, IDamagable
 
 	public void TakeDamage(float damage)
 	{
+		if (!canDestroy)
+		{
+			return;
+		}
 		health -= damage;
 		if (health <= 0)
 		{
@@ -39,6 +45,10 @@ public class Obstacle : MonoBehaviour, IDamagable
 
 	public void Die()
 	{
+		if (!canDestroy)
+		{
+			return;
+		}
 		EventBus.Post<EventType>(EventType.ObstacleDestroy);
 		foreach (ObstacleDrop drop in obstacleDrops)
 		{

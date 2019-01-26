@@ -48,6 +48,7 @@ MonoBehaviour:
   health: 10
   dropRange: 1
   speed: -1
+  canDestroy: 1
   obstacleDrops:
   - dropPrefab: {fileID: 5232521559884490025, guid: 013eddea2f3591448b8b39f2204b0ba3,
       type: 3}
