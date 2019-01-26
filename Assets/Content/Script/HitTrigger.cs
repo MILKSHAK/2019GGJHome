@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum HitType
 {
-	HitObject,
-	HitPlayer,
+	HitSmall,
+	HitBig,
 }
 
 [RequireComponent(typeof(Collider2D))]
@@ -17,13 +17,13 @@ public class HitTrigger : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			if (_hitType == HitType.HitObject)
+			if (_hitType == HitType.HitSmall)
 			{
-				EventBus.Post<EventType>(EventType.HitObstacle);
+				EventBus.Post<EventType>(EventType.HitObstacleSmall);
 			}
-			else if (_hitType == HitType.HitPlayer)
+			else if (_hitType == HitType.HitBig)
 			{
-				EventBus.Post<EventType>(EventType.HitPlayer);
+				EventBus.Post<EventType>(EventType.HitObstacleBig);
 			}
 		}
 	}

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6003940807713176211}
   - component: {fileID: 6003940807713176210}
+  - component: {fileID: 9118510816555888995}
   - component: {fileID: 5426479957957497807}
   - component: {fileID: 3410771712947564816}
   - component: {fileID: 7896395507097242517}
@@ -54,6 +55,19 @@ MonoBehaviour:
   - dropPrefab: {fileID: 5232521559884490025, guid: 013eddea2f3591448b8b39f2204b0ba3,
       type: 3}
     number: 3
+--- !u!114 &9118510816555888995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003940807713176208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab61954acf298a4cb46b8aa08ed48d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hitType: 1
 --- !u!61 &5426479957957497807
 BoxCollider2D:
   m_ObjectHideFlags: 0

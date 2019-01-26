@@ -12,8 +12,8 @@ public enum DeathReason
 public enum EventType
 {
 	PickupEnergy,
-	HitObstacle,
-	HitPlayer,
+	HitObstacleSmall,
+	HitObstacleBig,
 	PlayerDestroy,
 	ObstacleDestroy,
 }
