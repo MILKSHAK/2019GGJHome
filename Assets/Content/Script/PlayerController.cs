@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
 	public void BoostStart()
 	{
 		_boosting = true;
+		EventBus.Post<EventType>(EventType.PlayerBoostStart);
 		return;
 	}
 
