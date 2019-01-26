@@ -6,9 +6,10 @@ using UnityEngine;
 public enum EventType
 {
 	PickupEnergy,
-	HitObject,
+	HitObstacle,
 	HitPlayer,
 	PlayerDestroy,
+	ObstacleDestroy,
 }
 
 public static class EventBus {

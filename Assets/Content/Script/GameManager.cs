@@ -5,14 +5,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	[SerializeField]
-	private float _initialBoostSpeed; // 引擎加速
+	public float initialBoostSpeed; // 引擎加速
 
-	[SerializeField]
-	private float _initialConstSpeed; // 受太阳吸引速度
+	public float initialConstSpeed; // 受太阳吸引速度
 
-	[SerializeField]
-	private float _initialEnergy;
+	public float initialEnergy;
+
+	public float energyCost;
+
+	public float energyRecovery;
+
+	public float currentEnergy;
 
 	private float _runningTime;
 
@@ -23,6 +26,12 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		EventBus.Subscribe<EventType>(OnEvent);
+		SetupGame();
+	}
+
+	private void SetupGame()
+	{
+		currentEnergy = initialEnergy;
 	}
 
 	private void OnEvent(EventType eventType)
@@ -31,7 +40,7 @@ public class GameManager : MonoBehaviour
 		{
 			OnPickEnergy();
 		}
-		else if (eventType == EventType.HitObject)
+		else if (eventType == EventType.HitObstacle)
 		{
 
 		}

@@ -19,7 +19,7 @@ public class HitTrigger : MonoBehaviour
 		{
 			if (_hitType == HitType.HitObject)
 			{
-				EventBus.Post<EventType>(EventType.HitObject);
+				EventBus.Post<EventType>(EventType.HitObstacle);
 			}
 			else if (_hitType == HitType.HitPlayer)
 			{

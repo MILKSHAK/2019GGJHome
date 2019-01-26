@@ -8,16 +8,20 @@ public class PlayerController : MonoBehaviour
 	private float _maxSpeed = 3;
 
 	[SerializeField]
-	private float _deaccelerateRate = 1;
+	private float _deaccelerateRate = -1;
 
 	[SerializeField]
-	private Vector2 _constantForce = new Vector2(-1, 0);
+	private Transform _lazerPrefab;
 
 	private Rigidbody2D _rigidbody;
 
-	private Vector2 _currentVelocity = new Vector2(0, 0);
-
 	private GameManager _gameManager;
+
+	private float _currentSpeed = 0;
+
+	private bool _boosting = false;
+
+	private GameObject _firedLazer;
 
 	private void Start()
 	{
@@ -25,7 +29,7 @@ public class PlayerController : MonoBehaviour
 		_gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		if (GameInput.MoveAxis.y != 0)
 		{
@@ -44,8 +48,89 @@ public class PlayerController : MonoBehaviour
 			{
 				_rigidbody.AddForce(new Vector2(0, _deaccelerateRate));
 			}
-			
+		}
+
+		if (GameInput.Boost.Down)
+		{
+			BoostStart();
+		}
+		else if (GameInput.Boost.Pressing)
+		{
+			BoostUpdate();
+		}
+		else if (GameInput.Boost.Up)
+		{
+			BoostFinish();
+		}
+		else
+		{
+			if (_currentSpeed > _gameManager.initialConstSpeed)
+			{
+				_currentSpeed = _currentSpeed - Time.fixedDeltaTime * _deaccelerateRate;
+				_rigidbody.AddForce(new Vector2(-_deaccelerateRate, 0));
+			}
+		}
+
+		if (GameInput.Shoot.Down)
+		{
+			FireStart();
+		}
+		else if (GameInput.Shoot.Up)
+		{
+			FireFinish();
+		}
+
+		if (!_boosting)
+		{
+			_gameManager.currentEnergy += _gameManager.energyRecovery * Time.fixedDeltaTime;
 		}
 	}
 
+	public void BoostStart()
+	{
+		_boosting = true;
+		return;
+	}
+
+	public void BoostUpdate()
+	{
+		if (_boosting && _gameManager.currentEnergy > 0)
+		{
+			_currentSpeed = _currentSpeed + Time.fixedDeltaTime * _gameManager.initialBoostSpeed;
+			_rigidbody.AddForce(new Vector2(_deaccelerateRate, 0));
+			_gameManager.currentEnergy -= _gameManager.energyCost * Time.fixedDeltaTime;
+		}
+		else
+		{
+			_boosting = false;
+		}
+		return;
+	}
+
+	public void BoostFinish()
+	{
+		_boosting = false;
+		return;
+	}
+
+	public void FireStart()
+	{
+		if (_firedLazer == null)
+		{
+			_firedLazer = Instantiate(_lazerPrefab).gameObject;
+		}
+
+		return;
+	}
+
+	public void FireFinish()
+	{
+		if (_firedLazer != null)
+		{
+			Destroy(_firedLazer);
+			_firedLazer = null;
+		}
+		
+		return;
+	}
 }
