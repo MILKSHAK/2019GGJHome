@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
 	private float _deaccelerateRate = -1;
 
 	[SerializeField]
+	private float _boostRate = -1;
+
+	[SerializeField]
 	private float _accelerateRate = 3;
 
 	[SerializeField]
@@ -71,67 +74,72 @@ public class PlayerController : MonoBehaviour
 		float energyRatio = _gameManager.currentEnergy / _gameManager.initialEnergy;
 		_displayEnergy = Mathf.MoveTowards(_displayEnergy, energyRatio, Time.deltaTime * 1.0f);
 		energyMat.SetFloat("_Progress", _displayEnergy);
-	}
-
-	private void FixedUpdate()
-	{
-		if (GameInput.MoveAxis.y != 0)
-		{
-			if (_rigidbody.velocity.sqrMagnitude <= _maxSpeed)
-			{
-				_rigidbody.AddForce(new Vector2(0, GameInput.MoveAxis.y * _accelerateRate));
-			}
-		}
-		else
-		{
-			if (_rigidbody.velocity.y > 0)
-			{
-				_rigidbody.AddForce(new Vector2(0, -_deaccelerateRate));
-			}
-			else if (_rigidbody.velocity.y < 0)
-			{
-				_rigidbody.AddForce(new Vector2(0, _deaccelerateRate));
-			}
-		}
 
 		if (GameInput.Boost.Down)
 		{
 			BoostStart();
 		}
-		else if (GameInput.Boost.Pressing)
-		{
-			BoostUpdate();
-		}
 		else if (GameInput.Boost.Up)
 		{
 			BoostFinish();
-		}
-		else
-		{
-			if (_rigidbody.velocity.x > _gameManager.initialConstSpeed)
-			{
-				_gameManager.currentSpeed = _gameManager.currentSpeed - Time.fixedDeltaTime * _deaccelerateRate;
-				_rigidbody.AddForce(new Vector2(-_deaccelerateRate, 0));
-			}
 		}
 
 		if (GameInput.Shoot.Down)
 		{
 			FireStart();
 		}
-		else if (GameInput.Shoot.Pressing)
-		{
-			FireUpdate();
-		}
 		else if (GameInput.Shoot.Up)
 		{
 			FireFinish();
 		}
+	}
+
+	private void FixedUpdate()
+	{
+		Vector2 force = Vector2.zero;
+		if (Mathf.Abs(GameInput.MoveAxis.y) > 0.1f)
+		{
+			force.y += GameInput.MoveAxis.y * _accelerateRate;
+		}
+		else
+		{
+			if (_rigidbody.velocity.y > 0)
+			{
+				force.y += -_deaccelerateRate;
+			}
+			else if (_rigidbody.velocity.y < 0)
+			{
+				force.y += _deaccelerateRate;
+			}
+		}
+
+		if (GameInput.Boost.Pressing)
+		{
+			BoostUpdate(ref force);
+		}
+		else if (!GameInput.Boost.Down)
+		{
+			if (_rigidbody.velocity.x > _gameManager.initialConstSpeed)
+			{
+				_gameManager.currentSpeed = _gameManager.currentSpeed - Time.fixedDeltaTime * _deaccelerateRate;
+				force.x += -_boostRate;
+			}
+		}
+
+		if (GameInput.Shoot.Pressing)
+		{
+			FireUpdate();
+		}
 
 		if (!_boosting && !_firing)
 		{
-			_gameManager.currentEnergy += _gameManager.energyRecovery * Time.fixedDeltaTime;
+			_gameManager.currentEnergy = Mathf.Min(_gameManager.initialEnergy, _gameManager.currentEnergy + _gameManager.energyRecovery * Time.fixedDeltaTime);
 		}
+
+		_rigidbody.AddForce(force);
+		var nvel = _rigidbody.velocity;
+		nvel.y = Mathf.Min(_maxSpeed, Mathf.Abs(nvel.y)) * Mathf.Sign(nvel.y);
+		_rigidbody.velocity = nvel;
 	}
 
 	public void BoostStart()
@@ -140,12 +148,12 @@ public class PlayerController : MonoBehaviour
 		return;
 	}
 
-	public void BoostUpdate()
+	public void BoostUpdate(ref Vector2 force)
 	{
 		if (_boosting && _gameManager.currentEnergy > 0 && _rigidbody.velocity.x < _maxSpeed)
 		{
 			_gameManager.currentSpeed = _gameManager.currentSpeed + Time.fixedDeltaTime * _gameManager.boostSpeed;
-			_rigidbody.AddForce(new Vector2(_deaccelerateRate, 0));
+			force.x += _deaccelerateRate;
 			_gameManager.currentEnergy -= _gameManager.energyCost * Time.fixedDeltaTime;
 		}
 		else
