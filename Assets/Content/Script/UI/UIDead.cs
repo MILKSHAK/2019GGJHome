@@ -16,11 +16,21 @@ public class UIDead : MonoBehaviour
     void OnEvent(EnumEventType type) {
         if (type == EnumEventType.PlayerDestroy)
             StartCoroutine(ActionDie());
+		if (type == EnumEventType.EscapedSun)
+		{
+			StartCoroutine(ActionWin());
+		}
     }
 
     IEnumerator ActionDie() {
         yield return new WaitForSeconds(1.0f);
         GetComponent<Animator>().SetTrigger("Die");
     }
+
+	IEnumerator ActionWin()
+	{
+		yield return new WaitForSeconds(1.0f);
+		GetComponent<Animator>().SetTrigger("Win");
+	}
 
 }
