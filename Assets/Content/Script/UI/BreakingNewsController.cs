@@ -21,14 +21,15 @@ public class BreakingNewsController : MonoBehaviour
 
     IEnumerator Start() {
 		_gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        yield return new WaitUntil(() => _gm.started);
         root.gameObject.SetActive(false);
-        while (true) {
+        yield return new WaitUntil(() => _gm.started);
+        while (!_gm.isWin) {
             yield return new WaitForSeconds(Random.Range(9f, 15f));
 
             var text = db.normalNews[Random.Range(0, db.normalNews.Count - 1)];
             var sprite = db.normalSprites[Random.Range(0, db.normalSprites.Count - 1)];
-            DisplayNews(text, sprite);
+            if (!_gm.isWin)
+                DisplayNews(text, sprite);
         }
     }
 

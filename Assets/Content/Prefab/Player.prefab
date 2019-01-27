@@ -564,8 +564,8 @@ MonoBehaviour:
   _boostRate: 4
   _boostDeaccelerateRate: 2
   _accelerateRate: 3
-  _hitImpactSmall: 2
-  _hitImpactBig: 4
+  _hitImpactSmall: 1.4
+  _hitImpactBig: 3.7
   _lazerPrefab: {fileID: 4798468740714071848, guid: ff34611b95947fb4f8d02d0a07c2abb2,
     type: 3}
   energyMat: {fileID: 2100000, guid: c3fd5536f2d7a3142ba52728dbe5b7c8, type: 2}
