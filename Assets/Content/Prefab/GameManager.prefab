@@ -64,6 +64,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ee118d2b57d0570448e54aed04e7ef15, type: 3}
   - name: PlayerDead
     clip: {fileID: 8300000, guid: e7f2eab18007ff6469c8384b0536535d, type: 3}
+  - name: PlayerWin
+    clip: {fileID: 8300000, guid: aa61902b6ba3d7640bff95acdb6d3eea, type: 3}
 --- !u!82 &5155131108267423768
 AudioSource:
   m_ObjectHideFlags: 0
