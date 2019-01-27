@@ -144,6 +144,8 @@ public class PlayerController : MonoBehaviour
 	float _displayEnergy = .0f;
 
 	void Update() {
+		if (!_gameManager.started)
+			return;
 		float energyRatio = _gameManager.currentEnergy / _gameManager.initialEnergy;
 		_displayEnergy = Mathf.MoveTowards(_displayEnergy, energyRatio, Time.deltaTime * 1.0f);
 		energyMat.SetFloat("_Progress", _displayEnergy);
@@ -169,6 +171,9 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (!_gameManager.started)
+			return;
+
 		Vector2 nvel;
 		if (_gameManager.isDead || _gameManager.isWin) {
 			nvel = _rigidbody.velocity;

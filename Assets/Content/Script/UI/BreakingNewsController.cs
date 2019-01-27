@@ -17,7 +17,11 @@ public class BreakingNewsController : MonoBehaviour
     bool displaying;
     bool overriding;
 
+    GameManager _gm;
+
     IEnumerator Start() {
+		_gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        yield return new WaitUntil(() => _gm.started);
         root.gameObject.SetActive(false);
         while (true) {
             yield return new WaitForSeconds(Random.Range(9f, 15f));

@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 	[NonSerialized]
 	public DeathReason deathReason;
 
+	[NonSerialized]
+	public bool started = false;
+
 	public Material planetHeatMaterial;
 
 	public GameObject explodePrefab;
@@ -77,6 +80,12 @@ public class GameManager : MonoBehaviour
 	{
 		_runningTime = Time.time;
 
+		if (started) {
+			if (GameInput.MainMenu.Down)
+				SceneManager.LoadScene("MainMenu");
+			if (GameInput.Start.Down)
+				SceneManager.LoadScene("GameScene");
+		}
 
 		if (isDead && Input.anyKeyDown) {
 			SceneManager.LoadScene("GameScene");

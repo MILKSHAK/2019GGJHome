@@ -14,8 +14,17 @@ public class LevelScroll : MonoBehaviour
 
     const float LookaheadDistance = 15f;
 
+    GameManager _gm;
+
+    void Awake() {
+		_gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
     void Update()
     {
+        if (!_gm.started)
+            return;
+
         if (hasLookahead) {
             if (transform.position.x > LookaheadDistance)
                 return;

@@ -25,7 +25,9 @@ public static class GameInput {
 
     public static readonly ButtonWrapper
         Boost = new ButtonWrapper("Boost"),
-        Shoot = new ButtonWrapper("Shoot");
+        Shoot = new ButtonWrapper("Shoot"),
+        MainMenu = new ButtonWrapper("Menu"),
+        Start = new ButtonWrapper("Start");
 
     private static Player input {
         get {
