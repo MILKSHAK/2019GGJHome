@@ -680,6 +680,82 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &886092151
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1738153395}
+    m_Modifications:
+    - target: {fileID: 6321268800847103146, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_Name
+      value: Tesla
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 181.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 619374918127835523, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.0839798
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353716884153455522, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3353716884153455522, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293542944710823478, guid: d55c8f41f0e30d54586ce46fcdc8132c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d46784044b9f04498ca3d37ab081b83,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 6199318570597384517, guid: d55c8f41f0e30d54586ce46fcdc8132c, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d55c8f41f0e30d54586ce46fcdc8132c, type: 3}
 --- !u!1 &954342434
 GameObject:
   m_ObjectHideFlags: 0
