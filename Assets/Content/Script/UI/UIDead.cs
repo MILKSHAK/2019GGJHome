@@ -29,7 +29,7 @@ public class UIDead : MonoBehaviour
 
 	IEnumerator ActionWin()
 	{
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(7.0f);
 		GetComponent<Animator>().SetTrigger("Win");
 	}
 

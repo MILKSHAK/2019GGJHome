@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
 
 	private bool boosting = false;
 
+	private bool win = false;
+
 	private GameObject player;
 
 	private void Start()
@@ -35,6 +37,10 @@ public class CameraController : MonoBehaviour
 		{
 			boosting = false;
 		}
+		else if (ev == EnumEventType.EscapedSun)
+		{
+			win = true;
+		}
 		return;
 	}
 
@@ -44,6 +50,17 @@ public class CameraController : MonoBehaviour
 	{
 		if (player == null)
 		{
+			return;
+		}
+
+		if (win)
+		{
+			var npos = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 5f);
+			npos.z = -10;
+			transform.position = npos;
+			
+			_camera.orthographicSize = Mathf.MoveTowards(_camera.orthographicSize, 4f, Time.deltaTime * 1f);
+			UpdatePostProcessing();
 			return;
 		}
 
@@ -60,7 +77,7 @@ public class CameraController : MonoBehaviour
 	float _chromatic;
 
 	void UpdatePostProcessing() {
-		float targetChromatic = boosting ? 1.0f : 0.05f;
+		float targetChromatic = !win && boosting ? 1.0f : 0.05f;
 		_chromatic = Mathf.MoveTowards(_chromatic, targetChromatic, Time.deltaTime * 0.8f);
 		var settings = postProcess.chromaticAberration.settings;
 		settings.intensity = _chromatic;

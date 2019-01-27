@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator ActionDestroyWin() {
 		yield return null;
-		yield return new WaitForSeconds(5.0f);
+		yield return new WaitForSeconds(20.0f);
 		Destroy(gameObject);
 	}
 
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		Vector2 nvel;
-		if (_gameManager.isDead) {
+		if (_gameManager.isDead || _gameManager.isWin) {
 			nvel = _rigidbody.velocity;
 			nvel = Vector2.MoveTowards(nvel, Vector2.zero, Time.deltaTime * 2f);
 			_rigidbody.velocity = nvel;

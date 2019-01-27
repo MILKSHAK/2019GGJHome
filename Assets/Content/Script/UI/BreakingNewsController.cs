@@ -55,6 +55,7 @@ public class BreakingNewsController : MonoBehaviour
     }
 
     IEnumerator ActionNews(string text, Sprite sprite, bool isOverride) {
+        GetComponent<AudioSource>().Play();
         displaying = true;
         overriding = isOverride;
 

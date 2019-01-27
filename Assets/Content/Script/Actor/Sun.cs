@@ -50,6 +50,11 @@ public class Sun : MonoBehaviour {
     }
 
     void Update() {
+        if (_gameManager.isWin) {
+            transform.position += Vector3.left * Time.deltaTime * 5;
+            return;
+        }
+
         var player = GameObject.FindWithTag("Player");
         if (!player)
             return;
