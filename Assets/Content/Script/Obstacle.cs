@@ -49,29 +49,38 @@ public class Obstacle : MonoBehaviour, IDamagable
         health -= damage;
         if (health <= 0 && !died)
         {
+			Drop();
             Die();
         }
         return;
     }
 
-    public void Die()
+	public void Drop()
+	{
+		if (!canDestroy)
+		{
+			return;
+		}
+		EventBus.Post<EnumEventType>(EnumEventType.ObstacleDestroy);
+		foreach (ObstacleDrop drop in obstacleDrops)
+		{
+			for (int i = 0; i < drop.number; i++)
+			{
+				Vector3 spwanPos = GetRandomPos();
+				Instantiate(drop.dropPrefab, GetRandomPos(), Quaternion.Euler(0, 0, 0));
+			}
+		}
+	}
+
+	public void Die()
     {
         if (!canDestroy)
         {
             return;
         }
         died = true;
-        EventBus.Post<EnumEventType>(EnumEventType.ObstacleDestroy);
-        foreach (ObstacleDrop drop in obstacleDrops)
-        {
-            for (int i = 0; i < drop.number; i++)
-            {
-                Vector3 spwanPos = GetRandomPos();
-                Instantiate(drop.dropPrefab, GetRandomPos(), Quaternion.Euler(0, 0, 0));
-            }
-            Destroy(gameObject);
-        }
-        return;
+		Destroy(gameObject);
+		return;
     }
 
     public Vector3 GetRandomPos()
