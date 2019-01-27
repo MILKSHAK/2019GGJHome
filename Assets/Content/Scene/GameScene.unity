@@ -220,6 +220,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7037794861636906081, guid: d1a81d1e264940649a81901850769e0c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7037794861636906081, guid: d1a81d1e264940649a81901850769e0c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1a81d1e264940649a81901850769e0c, type: 3}
 --- !u!1 &185983898
@@ -370,7 +380,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -442,11 +452,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   postProcess: {fileID: 11400000, guid: 3ed79f0d5c3f4ed4284ef7d692f2ac64, type: 2}
-  cameraSizeSmall: 4
-  cameraSizeNormal: 5
-  cameraSizeBoost: 4.7
-  camFarPosX: 1
-  camNearPosX: -5
+  camRatioOverPos:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -8
+      value: 0.9
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.3814697
+      value: 1.2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  camRatioBoost: 1.1
 --- !u!4 &344921002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7037794861636906081, guid: d1a81d1e264940649a81901850769e0c,

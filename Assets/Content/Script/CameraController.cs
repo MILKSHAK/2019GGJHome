@@ -10,29 +10,13 @@ public class CameraController : MonoBehaviour
 
 	private Camera _camera;
 
-	[SerializeField]
-	private float cameraSizeSmall = 4;
+	public AnimationCurve camRatioOverPos;
 
-	[SerializeField]
-	private float cameraSizeNormal = 5;
-
-	[SerializeField]
-	private float cameraSizeBoost = 4.7f;
-
-	[SerializeField]
-	private float camFarPosX = 1;
-
-	[SerializeField]
-	private float camNearPosX = -5;
-
-	private float camBoostSpeed = 0.1f;
+	public float camRatioBoost;
 
 	private bool boosting = false;
 
 	private GameObject player;
-
-	private float boostCamRate = 1;
-
 
 	private void Start()
 	{
@@ -54,21 +38,21 @@ public class CameraController : MonoBehaviour
 		return;
 	}
 
+	float _camRatioBoost = 1.1f;
+
 	private void Update()
 	{
 		if (player == null)
 		{
 			return;
 		}
-		float currX = player.transform.position.x;
-		float maxCamDistance = camFarPosX - camNearPosX;
-		float maxCamSizeDiff = cameraSizeNormal - cameraSizeSmall;
-		float distCamRate = Mathf.Clamp(currX - camNearPosX, 0, maxCamDistance) / maxCamDistance;
 
-		//boostCamRate += (boosting ? -1 : 1) * camBoostSpeed * Time.deltaTime;
+		float camRatioPos = camRatioOverPos.Evaluate(player.transform.position.x);
+		float camRatioBoostTarget = boosting ? camRatioBoost : 1;
 
-		float fixedSize = maxCamSizeDiff * distCamRate;
-		_camera.orthographicSize = Mathf.Clamp(cameraSizeSmall + fixedSize, cameraSizeSmall, cameraSizeNormal);
+		_camRatioBoost = Mathf.MoveTowards(_camRatioBoost, camRatioBoostTarget, Time.deltaTime * 0.5f);
+
+		_camera.orthographicSize = 5 * camRatioPos * _camRatioBoost;
 
 		UpdatePostProcessing();
 	}
@@ -76,7 +60,7 @@ public class CameraController : MonoBehaviour
 	float _chromatic;
 
 	void UpdatePostProcessing() {
-		float targetChromatic = boosting ? 1.0f : 0.12f;
+		float targetChromatic = boosting ? 1.0f : 0.05f;
 		_chromatic = Mathf.MoveTowards(_chromatic, targetChromatic, Time.deltaTime * 0.8f);
 		var settings = postProcess.chromaticAberration.settings;
 		settings.intensity = _chromatic;

@@ -235,6 +235,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
+			EventBus.Post(EnumEventType.PlayerBoostEnd);
 			_boosting = false;
 		}
 		return;
@@ -242,6 +243,8 @@ public class PlayerController : MonoBehaviour
 
 	public void BoostFinish()
 	{
+		if (_boosting)
+			EventBus.Post(EnumEventType.PlayerBoostEnd);
 		_boosting = false;
 		_audioSource.Stop();
 		return;

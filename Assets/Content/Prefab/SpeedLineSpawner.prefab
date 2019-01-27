@@ -46,9 +46,9 @@ MonoBehaviour:
   prefab: {fileID: 3661870490977511676, guid: fa1ef673905cc5343993f466487155a3, type: 3}
   length: 1
   lengthRF: 0.3
-  genWait: 0.05
+  genWait: 0.04
   genWaitRF: 0.5
-  genHeight: 5
+  genHeight: 6
   spd: 5
   spdRF: 0.5
   edge: 15
