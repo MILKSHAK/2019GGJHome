@@ -258,9 +258,6 @@ public class PlayerController : MonoBehaviour
 			_lazer.gameObject.SetActive(true);
 			_lazerAnimator.SetBool("Fire", true);
 		}
-		//_audioSource.clip = _soundEffectList.Find(x => x.name == "Fire").clip;
-		//_audioSource.loop = true;
-		//_audioSource.Play();
 
 		return;
 	}
@@ -282,7 +279,6 @@ public class PlayerController : MonoBehaviour
 			_lazer.gameObject.SetActive(false);
 			_lazerAnimator.SetBool("Fire", false);
 		}
-		_audioSource.Stop();
 
 		return;
 	}

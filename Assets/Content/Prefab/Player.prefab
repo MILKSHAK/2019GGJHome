@@ -274,7 +274,7 @@ MonoBehaviour:
   energyMat: {fileID: 2100000, guid: c3fd5536f2d7a3142ba52728dbe5b7c8, type: 2}
   _soundEffects:
   - name: Boost
-    clip: {fileID: 8300000, guid: 95434e2de83312e4ab8e2ad7adb65eaa, type: 3}
+    clip: {fileID: 8300000, guid: eb64eb3d374f7e3459fd152bd5ac1862, type: 3}
   - name: Fire
     clip: {fileID: 8300000, guid: 2e774fdf795687745a673f483324f64f, type: 3}
 --- !u!50 &6246933029569346256
