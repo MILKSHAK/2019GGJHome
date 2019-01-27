@@ -109,7 +109,7 @@ Transform:
   m_LocalScale: {x: 0.39999998, y: 0.39999998, z: 1}
   m_Children: []
   m_Father: {fileID: 6246933029569346258}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5511411727023937798
 SpriteRenderer:
@@ -808,7 +808,7 @@ PrefabInstance:
     - target: {fileID: 8173101437592320605, guid: f8f01425ec1f54143bf4ad9cc04be572,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.25
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8173101437592320605, guid: f8f01425ec1f54143bf4ad9cc04be572,
         type: 3}
@@ -864,6 +864,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BodyType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222262618453056655, guid: f8f01425ec1f54143bf4ad9cc04be572,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.23137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222262618453056655, guid: f8f01425ec1f54143bf4ad9cc04be572,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.7490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222262618453056655, guid: f8f01425ec1f54143bf4ad9cc04be572,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.5647059
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f01425ec1f54143bf4ad9cc04be572, type: 3}
