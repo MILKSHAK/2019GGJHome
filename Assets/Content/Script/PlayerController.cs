@@ -234,6 +234,7 @@ public class PlayerController : MonoBehaviour
 	{
 		_boosting = true;
 		EventBus.Post<EnumEventType>(EnumEventType.PlayerBoostStart);
+		transform.Find("Booster").gameObject.SetActive(true);
 		_audioSource.clip = _soundEffectList.Find(x => x.name == "Boost").clip;
 		_audioSource.loop = true;
 		_audioSource.Play();
@@ -260,6 +261,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_boosting)
 			EventBus.Post(EnumEventType.PlayerBoostEnd);
+		transform.Find("Booster").gameObject.SetActive(false);
 		_boosting = false;
 		_audioSource.Stop();
 		return;
