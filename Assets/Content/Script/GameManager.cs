@@ -70,7 +70,8 @@ public class GameManager : MonoBehaviour
 	{
 		_runningTime = Time.time;
 
-		if (Input.GetKeyDown(KeyCode.F5)) {
+
+		if (isDead && Input.anyKeyDown) {
 			SceneManager.LoadScene("GameScene");
 		}
 	}
