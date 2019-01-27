@@ -66,7 +66,7 @@ public class Sun : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.GetComponent<PlayerController>() && !_gameManager.isDead) {
+        if (other.GetComponent<PlayerController>() && !_gameManager.isDead && !_gameManager.isWin) {
             print("Dead!!" + other);
             _gameManager.deathReason = DeathReason.Burn;
             EventBus.Post(EnumEventType.PlayerDestroy);

@@ -99,6 +99,10 @@ public class PlayerController : MonoBehaviour
 		{
 			OnHitBig();
 		}
+		else if (ev == EnumEventType.EscapedSun)
+		{
+			StartCoroutine(ActionDestroyWin());
+		}
 	}
 
 	private void OnHitBig()
@@ -121,6 +125,12 @@ public class PlayerController : MonoBehaviour
 		yield return null;
 		Instantiate(explodePrefab, transform.position, Quaternion.identity);
 		yield return new WaitForSeconds(0.3f);
+		Destroy(gameObject);
+	}
+
+	IEnumerator ActionDestroyWin() {
+		yield return null;
+		yield return new WaitForSeconds(5.0f);
 		Destroy(gameObject);
 	}
 

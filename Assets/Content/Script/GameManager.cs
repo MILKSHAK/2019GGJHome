@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 {
 	public bool isDead { get; private set; }
 
+	public bool isWin { get; private set; }
+
 	[NonSerialized]
 	public DeathReason deathReason;
 
@@ -98,6 +100,9 @@ public class GameManager : MonoBehaviour
 		{
 			OnPlayerDead();
 			isDead = true;
+		} else if (eventType == EnumEventType.EscapedSun)
+		{
+			isWin = true;
 		}
 		return;
 	}
