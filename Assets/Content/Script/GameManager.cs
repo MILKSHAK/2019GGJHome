@@ -114,6 +114,8 @@ public class GameManager : MonoBehaviour
 
 	private void OnHitBig()
 	{
+		if (!_audioSource)
+			return;
 		_audioSource.clip = _soundEffectList.Find(x => x.name == "HitBig").clip;
 		_audioSource.Play();
 		return;
@@ -121,6 +123,8 @@ public class GameManager : MonoBehaviour
 
 	private void OnPlayerDead()
 	{
+		if (!_audioSource)
+			return;
 		_audioSource.clip = _soundEffectList.Find(x => x.name == "PlayerDead").clip;
 		_audioSource.Play();
 		return;
