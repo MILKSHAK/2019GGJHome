@@ -119,10 +119,13 @@ public class GameManager : MonoBehaviour
 			isDead = true;
 		} else if (eventType == EnumEventType.EscapedSun)
 		{
+			OnPlayerWin();
 			isWin = true;
 		}
 		return;
 	}
+
+
 
 	private void OnPickEnergy()
 	{
@@ -153,5 +156,13 @@ public class GameManager : MonoBehaviour
 		_audioSource.clip = _soundEffectList.Find(x => x.name == "PlayerDead").clip;
 		_audioSource.Play();
 		return;
+	}
+
+	private void OnPlayerWin()
+	{
+		if (!_audioSource)
+			return;
+		_audioSource.clip = _soundEffectList.Find(x => x.name == "PlayerWin").clip;
+		_audioSource.Play();
 	}
 }
