@@ -54,7 +54,7 @@ MonoBehaviour:
   shootEnergyCost: 3
   energyRecovery: 1.5
   currentEnergy: 0
-  pickUpEnergy: 0
+  pickUpEnergy: 1.4
   boostSpeed: 0
   currentSpeed: 0
   _soundEffects:
@@ -76,7 +76,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0

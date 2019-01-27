@@ -62,8 +62,15 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		EventBus.Subscribe<EnumEventType>(OnEvent);
 		SetupGame();
+	}
+
+	void OnEnable() {
+		EventBus.Subscribe<EnumEventType>(OnEvent);
+	}
+
+	void OnDisable() {
+		EventBus.Unsubscribe<EnumEventType>(OnEvent);
 	}
 
 	private void Update()

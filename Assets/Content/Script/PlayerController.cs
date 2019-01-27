@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 	private void OnHitBig()
 	{
 		_rigidbody.velocity = _rigidbody.velocity - new Vector2(_hitImpactBig, 0);
-		transform.Translate(new Vector3(-_hitImpactBig, 0, 0));
+		// transform.Translate(new Vector3(-_hitImpactBig, 0, 0));
 		// todo: 大撞击效果
 		return;
 	}
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
 	{
 		// todo: 小撞击效果
 		_rigidbody.velocity = _rigidbody.velocity - new Vector2(_hitImpactSmall, 0);
-		transform.Translate(new Vector3(-_hitImpactSmall, 0, 0));
+		// transform.Translate(new Vector3(-_hitImpactSmall, 0, 0));
 		return;
 	}
 
