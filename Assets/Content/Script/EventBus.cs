@@ -18,6 +18,7 @@ public enum EnumEventType
 	ObstacleDestroy,
 	PlayerBoostStart,
 	PlayerBoostEnd,
+	EscapedSun
 }
 
 public static class EventBus {

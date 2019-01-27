@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
 
 	public float energyRecovery;
 
+	[NonSerialized]
+	public float gameProgress;
+
 	public float currentEnergy;
 
 	public float pickUpEnergy;
