@@ -309,7 +309,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.24
+      intensity: 1
   grain:
     m_Enabled: 1
     m_Settings:

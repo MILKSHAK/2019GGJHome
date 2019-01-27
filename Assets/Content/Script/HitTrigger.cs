@@ -8,7 +8,7 @@ public enum HitType
     HitBig,
 }
 
-[RequireComponent(typeof(Collider2D))]
+// [RequireComponent(typeof(Collider2D))]
 public class HitTrigger : MonoBehaviour
 {
     public HitType _hitType;

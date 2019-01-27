@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(Collider2D))]
+// [RequireComponent(typeof(Collider2D))]
 public class Obstacle : MonoBehaviour, IDamagable
 {
     public float health;
