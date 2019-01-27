@@ -594,7 +594,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6f0961e2bb05d3543a8c2211676910e5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 481593bcdcf5b8f40a623bf2d457e853, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -890,21 +890,6 @@ PrefabInstance:
     - target: {fileID: 8252255322624911231, guid: cae5b30d2bb857949877e86d7c5bc8c6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549700014918551170, guid: cae5b30d2bb857949877e86d7c5bc8c6,
-        type: 3}
-      propertyPath: glowSclOverDist.m_Curve.Array.data[2].time
-      value: 20.699585
-      objectReference: {fileID: 0}
-    - target: {fileID: 6549700014918551170, guid: cae5b30d2bb857949877e86d7c5bc8c6,
-        type: 3}
-      propertyPath: glowSclOverDist.m_Curve.Array.data[2].value
-      value: 1.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3784686431033649548, guid: cae5b30d2bb857949877e86d7c5bc8c6,
-        type: 3}
-      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
